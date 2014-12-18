@@ -20,8 +20,10 @@ The Provider Model
 The great thing about using the provider model is that the entire implementation is done inside a provider. Your entire source code on “how” to persist your objects is inside the specific provider. If you are not familiar with the provider model, please take a look at these resources to get familiar with it.
 
 Microsoft ASP.NET 2.0 Providers: Introduction
+(http://msdn.microsoft.com/en-us/library/aa478948.aspx)
 
 Develop Provider-based Features of Your Application
+(http://www.codemag.com/Article/0903091)
 
 Besides the introduction of generics in .NET 2, the provider model was in my opinion one of the most powerful features introduced. The .NET framework has been using the provider model internally ever since, all the way to the latest version of .NET 4.5. Here are some examples, where Microsoft is using the provider model:
 
