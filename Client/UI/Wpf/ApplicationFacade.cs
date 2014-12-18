@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
+using DTO;
+using Services;
+
+namespace Wpf
+{
+    public class ApplicationFacade
+    {
+        private static readonly ApplicationFacade _instance = new ApplicationFacade();
+
+        private ApplicationFacade()
+        {
+            // Do any initialization here
+        }
+
+        public static string ErrorMessage { get; set; }
+
+        public static List<PersonDTO> GetAllPeople()
+        {
+            // Do any client side logging and/or validations here
+            return RESTServices.GetAllPeople();
+        }
+
+        public static bool CreatePerson(string firstName, string lastName, string eMail)
+        {
+            // Do any client side logging and/or validations here
+
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(eMail))
+            {
+                MessageBox.Show("First name, last name, and email can not be empty.");
+                return false;
+            }
+
+            PersonDTO dto = new PersonDTO();
+            dto.FirstName = firstName;
+            dto.LastName = lastName;
+            dto.Email = eMail;
+
+            RESTServices.CreatePerson(dto);
+
+            if (RESTServices.ResultType == ResultType.Success)
+            {
+                MessageBox.Show(firstName + " " + lastName + " was created successfully.");
+                return true;
+            }
+
+            HandleExceptions();
+            return false;
+        }
+
+        private static void HandleExceptions()
+        {
+            MessageBox.Show("Error code: " + RESTServices.ErrorInfo.Code + Environment.NewLine +
+                "Error severity type: " + RESTServices.ErrorInfo.ErrorSeverityType + Environment.NewLine +
+                "Error message: " + RESTServices.ErrorInfo.Message + Environment.NewLine +
+                "Error description: " + RESTServices.ErrorInfo.Description);
+        }
+
+        public static bool SavePerson(PersonDTO dto)
+        {
+            if (dto == null)
+            {
+                MessageBox.Show("PersonDto can not be null.");
+                return false;
+            }
+
+            RESTServices.SavePerson(dto);
+
+            if (RESTServices.ResultType == ResultType.Success)
+            {
+                MessageBox.Show(dto.FirstName + " " + dto.LastName + " was updated successfully.");
+                return true;
+            }
+
+            HandleExceptions();
+            return false;
+        }
+
+        public static bool DeletePerson(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                MessageBox.Show("id can not be null.");
+                return false;
+            }
+
+            RESTServices.DeletePerson(id);
+
+            if (RESTServices.ResultType == ResultType.Success)
+                return true;
+
+            HandleExceptions();
+            return false;
+        }
+    }
+}

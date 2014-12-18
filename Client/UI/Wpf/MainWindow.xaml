@@ -1,0 +1,22 @@
+﻿<Window x:Name="frmMain" x:Class="Wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Object Persistence WPF UI" Height="396" Width="889" WindowStartupLocation="CenterScreen">
+    <Grid Loaded="Grid_Loaded">
+        <Label Content="First name:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
+        <Label Content="Last name:" HorizontalAlignment="Left" Margin="11,80,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtFirstName" TabIndex="0" HorizontalAlignment="Left" Height="23" Margin="82,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="txtLastName" TabIndex="1" HorizontalAlignment="Left" Height="23" Margin="82,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="txtEmail" TabIndex="2" HorizontalAlignment="Left" Height="23" Margin="82,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Button x:Name="btnCreate" Content="Create" HorizontalAlignment="Left" Margin="10,173,0,0" VerticalAlignment="Top" Width="75" Click="btnCreate_Click"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="100,173,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="195,173,0,0" VerticalAlignment="Top" Width="75" Click="btnDelete_Click"/>
+        <ListBox x:Name="lstPeople" HorizontalAlignment="Left" Height="307" Margin="365,13,0,0" VerticalAlignment="Top" Width="495" SelectionChanged="lstPeople_SelectionChanged"/>
+        <Button x:Name="btnLoadAllObjects" Content="Load All Objects" HorizontalAlignment="Left" Margin="365,325,0,0" VerticalAlignment="Top" Width="120" Click="btnLoad_Click"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="11,120,0,0" VerticalAlignment="Top"/>
+        <Label Content="Id:" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblId" Content="" HorizontalAlignment="Left" Margin="82,13,0,0" VerticalAlignment="Top" Width="278" FontWeight="Bold"/>
+        <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" Margin="785,325,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="btnClose_Click"/>
+        <Button x:Name="btnClearAllFields" Content="Clear all fields" HorizontalAlignment="Left" Margin="11,215,0,0" VerticalAlignment="Top" Width="259" Click="btnClearAllFields_Click"/>
+    </Grid>
+</Window>
