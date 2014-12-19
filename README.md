@@ -1,6 +1,8 @@
 ObjectPersistence
 =================
 
+Watch the video walkthrough on my YouTube channel at http://youtu.be/DxSGSZ3k89s
+
 It has been several years (six years to be precise) since I published my article “What is Object Persistence” (https://thomasjaeger.wordpress.com/2008/06/15/what-is-object-persistence/). I have received great feedback since then from the blog post and from presentations I gave about object persistence. However, the challenge of using an appropriate object persistence mechanism still exists today. Fortunately, there are even more ways to store your objects nowadays when compared to 2008. With the great opportunities that cloud computing offers, object persistence gets even more exciting.
 
 So, I decided to publish a follow-up blog post about object persistence. In addition, I will also provide working C# code so that you can try it out yourself. Since object persistence is such an important piece of a software architecture and the depth of technical information about it can be overwhelming, I may have to spread out my thoughts and example source code over additional blog posts.
