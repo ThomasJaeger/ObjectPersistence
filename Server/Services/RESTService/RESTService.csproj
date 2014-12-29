@@ -87,6 +87,7 @@
   <ItemGroup>
     <Compile Include="ApplicationFacade.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AddressTypeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="ErrorCodeMap.cs" />
     <Compile Include="ErrorCodeType.cs" />
@@ -94,6 +95,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressDTO.cs" />
+    <Compile Include="Models\AddressTypeDTO.cs" />
+    <Compile Include="Models\DTOBase.cs" />
     <Compile Include="Models\PersonDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

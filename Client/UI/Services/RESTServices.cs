@@ -13,10 +13,13 @@ namespace Services
     {
         private static string _serviceBase = @"http://localhost:51824/";
         private static string _personUrl = @"api/v1/persons/";
+        private static string _addressTypeUrl = @"api/v1/addresstypes/";
         private static string _lastJsonResult;
         private static ResultType _resultType;
         private static List<string> _successfullResponseCodes = new List<string>();
         private static ErrorInfo _errorInfo;
+
+        private const int TIMEOUT = 120000;   // in milliseconds, 30,000 = 30 seconds
 
         static RESTServices()
         {
@@ -88,7 +91,7 @@ namespace Services
             using (var restClient = new HttpClient())
             {
                 restClient.BaseAddress = new Uri(url);
-                restClient.Timeout = TimeSpan.FromMilliseconds(30000);
+                restClient.Timeout = TimeSpan.FromMilliseconds(TIMEOUT);
                 restClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 
                 using (var request = new HttpRequestMessage(HttpMethod.Get, restClient.BaseAddress.AbsoluteUri))
@@ -109,7 +112,7 @@ namespace Services
             using (var restClient = new HttpClient())
             {
                 restClient.BaseAddress = new Uri(url);
-                restClient.Timeout = TimeSpan.FromMilliseconds(30000);
+                restClient.Timeout = TimeSpan.FromMilliseconds(TIMEOUT);
                 restClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 using (var request = new HttpRequestMessage(HttpMethod.Get, restClient.BaseAddress.AbsoluteUri))
@@ -130,7 +133,7 @@ namespace Services
             using (var restClient = new HttpClient())
             {
                 restClient.BaseAddress = new Uri(url);
-                restClient.Timeout = TimeSpan.FromMilliseconds(30000);
+                restClient.Timeout = TimeSpan.FromMilliseconds(TIMEOUT);
                 restClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 string json = JsonConvert.SerializeObject(requestObject);
 
@@ -152,7 +155,7 @@ namespace Services
             using (var restClient = new HttpClient())
             {
                 restClient.BaseAddress = new Uri(url);
-                restClient.Timeout = TimeSpan.FromMilliseconds(30000);
+                restClient.Timeout = TimeSpan.FromMilliseconds(TIMEOUT);
                 restClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 string json = JsonConvert.SerializeObject(requestObject);
 
@@ -174,7 +177,7 @@ namespace Services
             using (var restClient = new HttpClient())
             {
                 restClient.BaseAddress = new Uri(url);
-                restClient.Timeout = TimeSpan.FromMilliseconds(30000);
+                restClient.Timeout = TimeSpan.FromMilliseconds(TIMEOUT);
                 restClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 var response = restClient.DeleteAsync(restClient.BaseAddress.AbsoluteUri).Result;
@@ -286,6 +289,20 @@ namespace Services
             {
                 HandleErrors(ex);
             }
+        }
+
+        public static List<AddressTypeDTO> GetAllAddressTypes()
+        {
+            List<AddressTypeDTO> list = new List<AddressTypeDTO>();
+            try
+            {
+                list = GETList<AddressTypeDTO>(_serviceBase + _addressTypeUrl);
+            }
+            catch (Exception ex)
+            {
+                HandleErrors(ex);
+            }
+            return list;
         }
     }
 }

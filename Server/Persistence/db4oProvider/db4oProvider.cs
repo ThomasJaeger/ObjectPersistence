@@ -94,6 +94,8 @@ namespace db4oProvider
         public override bool Save<T>(T obj)
         {
             if (obj == null) return false;
+            if (string.IsNullOrEmpty(obj.Id))
+                throw new Exception("Id is null or empty for object " + obj);
             bool result = false;
             try
             {
@@ -150,19 +152,22 @@ namespace db4oProvider
         public override T GetObjectByName<T>(string name)
         {
             IDb4oLinqQuery<T> queryResult = from T o in ObjectContainer
-                                            where o.Name.ToUpper() == name.ToUpper() && o.Active
+                                            where (String.Equals(o.Name, name, StringComparison.CurrentCultureIgnoreCase)) &&
+                                                  o.Active
                                             select o;
             return queryResult.FirstOrDefault();
         }
 
         public override Person GetPersonByEmail(string email)
         {
+            Person result = null;
             IDb4oLinqQuery<Person> queryResult = from Person o in ObjectContainer
                                                  where
-                                                     o.Email.ToUpper() == email.ToUpper() &&
+                                                     (String.Equals(o.Email, email, StringComparison.CurrentCultureIgnoreCase)) &&
                                                      o.Active
                                                  select o;
-            return queryResult.FirstOrDefault();
+            result = queryResult.FirstOrDefault();
+            return result;
         }
     }
 }

@@ -23,26 +23,21 @@ namespace Wpf
             return RESTServices.GetAllPeople();
         }
 
-        public static bool CreatePerson(string firstName, string lastName, string eMail)
+        public static bool CreatePerson(PersonDTO dto)
         {
             // Do any client side logging and/or validations here
 
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(eMail))
+            if (string.IsNullOrEmpty(dto.FirstName) || string.IsNullOrEmpty(dto.LastName) || string.IsNullOrEmpty(dto.Email))
             {
                 MessageBox.Show("First name, last name, and email can not be empty.");
                 return false;
             }
 
-            PersonDTO dto = new PersonDTO();
-            dto.FirstName = firstName;
-            dto.LastName = lastName;
-            dto.Email = eMail;
-
             RESTServices.CreatePerson(dto);
 
             if (RESTServices.ResultType == ResultType.Success)
             {
-                MessageBox.Show(firstName + " " + lastName + " was created successfully.");
+                MessageBox.Show(dto.FirstName + " " + dto.LastName + " was created successfully.");
                 return true;
             }
 
@@ -93,6 +88,12 @@ namespace Wpf
 
             HandleExceptions();
             return false;
+        }
+
+        public static List<AddressTypeDTO> GetAllAddressTypes()
+        {
+            // Do any client side logging and/or validations here
+            return RESTServices.GetAllAddressTypes();
         }
     }
 }

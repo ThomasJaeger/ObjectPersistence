@@ -34,7 +34,7 @@ namespace db4oProvider
         public static T GetByID(string id)
         {
             IList<T> result =
-                ObjectContainer.Query(delegate(T bo) { return bo.Id == id && bo.Active; });
+                ObjectContainer.Query(delegate(T bo) { return (bo.Id == id) && bo.Active; });
             if ((result == null) || (result.Count < 1))
                 return null;
             else
@@ -44,7 +44,7 @@ namespace db4oProvider
         public static T GetByName(string name)
         {
             IList<T> result =
-                ObjectContainer.Query(delegate(T bo) { return bo.Name == name && bo.Active; });
+                ObjectContainer.Query(delegate(T bo) { return (bo.Name == name) && bo.Active; });
             if ((result == null) || (result.Count < 1))
                 return null;
             else
@@ -56,16 +56,19 @@ namespace db4oProvider
             var list = new List<T>();
 
             IList<T> result = ObjectContainer.Query<T>(typeof (T));
+//            if (result != null)
+//                foreach (T item in result)
+//                {
+//                    if (item.Active)
+//                        list.Add(item);
+//                }
+//            IOrderedEnumerable<T> queryResult = from T o in list
+//                                                orderby o.Created descending
+//                                                select o;
+//            return queryResult.ToList();
             if (result != null)
-                foreach (T item in result)
-                {
-                    if (item.Active)
-                        list.Add(item);
-                }
-            IOrderedEnumerable<T> queryResult = from T o in list
-                                                orderby o.Created descending
-                                                select o;
-            return queryResult.ToList();
+                return result.ToList();
+            return list;
         }
 
         //        public static T GetFirstFoundObject()

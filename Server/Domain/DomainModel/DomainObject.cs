@@ -8,7 +8,7 @@ namespace DomainModel
         private DateTime _created = DateTime.Now;
         private string _id = Guid.NewGuid().ToString("D").ToUpper();
         private string _name = "";
-        public const string Version = "20141213";
+        public const string Version = "20141227";
 
         public DomainObject()
         {
@@ -48,6 +48,19 @@ namespace DomainModel
         public override string ToString()
         {
             return Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return _id.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == this) return true;
+            var other = obj as DomainObject;
+            if (other == null) return false;
+            return _id == other.Id;
         }
     }
 }
