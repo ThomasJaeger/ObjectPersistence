@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1F59C667-CF06-448C-A2B3-26B61CBB0F2B}</ProjectGuid>
+    <ProjectGuid>{AC9A9DF9-7D09-47E7-BAF3-EDD009AE5374}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Services</RootNamespace>
-    <AssemblyName>Services</AssemblyName>
+    <RootNamespace>RedisProviderIntegrationTests</RootNamespace>
+    <AssemblyName>RedisProviderIntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,14 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="KellermanSoftware.Compare-NET-Objects">
+      <HintPath>..\..\..\packages\CompareNETObjects.3.01.0.0\lib\net45\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,24 +55,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErroCodeMap.cs" />
-    <Compile Include="ErrorCodeType.cs" />
-    <Compile Include="ErrorData.cs" />
-    <Compile Include="ErrorInfo.cs" />
-    <Compile Include="ErrorResponse.cs" />
-    <Compile Include="ErrorSeverityType.cs" />
-    <Compile Include="ResultType.cs" />
-    <Compile Include="RESTServices.cs" />
+    <Compile Include="RedisProviderIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DTO\DTO.csproj">
-      <Project>{63c3e742-944e-4753-9eca-4605a981aa07}</Project>
-      <Name>DTO</Name>
-    </ProjectReference>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\..\Client\UI\DTO\DTO.csproj">
+      <Project>{63C3E742-944E-4753-9ECA-4605A981AA07}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Client\UI\Services\Services.csproj">
+      <Project>{1f59c667-cf06-448c-a2b3-26b61cbb0f2b}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Domain\DomainModel\DomainModel.csproj">
+      <Project>{0b666519-ead6-4118-90ef-a3bbb6b9edcb}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\RESTService\RESTService.csproj">
+      <Project>{bca4eeb5-3af9-45a6-983e-b7068976b418}</Project>
+      <Name>RESTService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PersistenceService\PersistenceService.csproj">
+      <Project>{11579fe1-fd3b-4eeb-8b97-230ab5de5815}</Project>
+      <Name>PersistenceService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RedisProvider\RedisProvider.csproj">
+      <Project>{7473e467-ea2c-448b-a0c5-f18875abf02f}</Project>
+      <Name>RedisProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

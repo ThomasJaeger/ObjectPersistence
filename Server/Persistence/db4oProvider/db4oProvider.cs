@@ -149,6 +149,23 @@ namespace db4oProvider
             return true;
         }
 
+        public override void DeleteAllObjects()
+        {
+            try
+            {
+                IList<DomainObject> list = _db.Query(delegate(DomainObject bo) { return bo.Id != ""; });
+                if (list != null)
+                    foreach (DomainObject item in list)
+                    {
+                        _db.Delete(item);
+                    }
+                _db.Commit();
+            }
+            catch
+            {
+            }
+        }
+
         public override T GetObjectByName<T>(string name)
         {
             IDb4oLinqQuery<T> queryResult = from T o in ObjectContainer

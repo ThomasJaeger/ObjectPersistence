@@ -72,16 +72,17 @@ namespace Services
             return list;
         }
 
-        public static void CreatePerson(PersonDTO dto)
+        public static PersonDTO CreatePerson(PersonDTO dto)
         {
             try
             {
-                PersonDTO response = POST<PersonDTO>(_serviceBase + _personUrl, dto);
+                return POST<PersonDTO>(_serviceBase + _personUrl, dto);
             }
             catch (Exception ex)
             {
                 HandleErrors(ex);
             }
+            return null;
         }
 
         private static T GET<T>(string url) where T : DTOBase, new()
@@ -135,7 +136,13 @@ namespace Services
                 restClient.BaseAddress = new Uri(url);
                 restClient.Timeout = TimeSpan.FromMilliseconds(TIMEOUT);
                 restClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                string json = JsonConvert.SerializeObject(requestObject);
+
+                // Use Formatting.Indented for pretty JSON format
+                string json = JsonConvert.SerializeObject(requestObject, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize  // is useful if objects are nested but not indefinitely
+                    //ReferenceLoopHandling = ReferenceLoopHandling.Ignore     // will not serialize an object if it is a child object of itself
+                });
 
                 using (HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json"))
                 {
@@ -186,7 +193,7 @@ namespace Services
             }
         }
 
-        private static void HandleResponse(string statusCode)
+        public static void HandleResponse(string statusCode)
         {
             _resultType = ResultType.Success;
 

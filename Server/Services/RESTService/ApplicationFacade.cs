@@ -33,11 +33,17 @@ namespace RESTService
             InitializeSystem();
         }
 
+        public static void ColdStart()
+        {
+            // Log that we are firing up the system now (from RESTService.Global.asax.cs)
+            // ...
+        }
+
         /// <summary>
         /// Initialize system, this includes the seed data of the system
         /// such as central cloud logging, domain types, company information, etc.
         /// </summary>
-        private void InitializeSystem()
+        private static void InitializeSystem()
         {
             // Connect to our persistence, this connection stays open
             // sicne our provider model for the persistance guaranties only
@@ -48,7 +54,7 @@ namespace RESTService
             CreateSeedData();
         }
 
-        private void CreateSeedData()
+        public static void CreateSeedData()
         {
             List<AddressType> list = Persistence.Instance.Provider.GetObjects<AddressType>();
             if (list.Count == 0)

@@ -12,6 +12,8 @@ namespace RESTService
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
             SetupAutoMapper();
+
+            ApplicationFacade.ColdStart();
         }
 
         private void SetupAutoMapper()

@@ -1,6 +1,4 @@
-﻿using System.Management.Instrumentation;
-
-namespace DomainModel
+﻿namespace DomainModel
 {
     public class Person: DomainObject
     {

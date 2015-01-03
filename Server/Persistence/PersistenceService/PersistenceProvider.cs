@@ -15,5 +15,6 @@ namespace PersistenceService
         public abstract bool SaveObjects<T>(List<T> list) where T : DomainObject, new();
         public abstract T GetObjectByName<T>(string name) where T : DomainObject, new();
         public abstract Person GetPersonByEmail(string email);
+        public abstract void DeleteAllObjects();
     }
 }
