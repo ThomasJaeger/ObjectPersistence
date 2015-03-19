@@ -6,6 +6,7 @@ using AutoMapper;
 using DomainModel;
 using PersistenceService;
 using RESTService.Models;
+using UtilityFunctions;
 
 namespace RESTService.Controllers
 {
@@ -26,10 +27,10 @@ namespace RESTService.Controllers
         public HttpResponseMessage Get(string id)
         {
             if (string.IsNullOrEmpty(id))
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "id is null");
+            return ErrorCodeMap.CreateResponse(Request, 10004, "id is null or empty");
             var obj = Persistence.Instance.Provider.GetObjectById<Person>(id);
             if (obj == null)
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "person does not exist");
+                return ErrorCodeMap.CreateResponse(Request, 10100, "person does not exist");
             var dto = Mapper.Map<PersonDTO>(obj);
             return Request.CreateResponse(HttpStatusCode.OK, dto);
         }
@@ -75,7 +76,7 @@ namespace RESTService.Controllers
             var obj = Persistence.Instance.Provider.GetObjectById<Person>(id);
             if (obj == null)
                 return ErrorCodeMap.CreateResponse(Request, 10100, "Can not find person with id " + id);
-            ApplicationFacade.DeleteAccount(obj);
+            ApplicationFacade.DeletePerson(obj);
             return Request.CreateResponse(HttpStatusCode.OK, id);
         }
 
@@ -85,7 +86,7 @@ namespace RESTService.Controllers
                 return ErrorCodeMap.CreateResponse(Request, 10003, "Person is null");
             if (string.IsNullOrEmpty(dto.Email))
                 return ErrorCodeMap.CreateResponse(Request, 10004, "email is null or empty");
-            if (!ApplicationFacade.ValidateEmail(dto.Email))
+            if (!Utility.ValidateEmail(dto.Email))
                 return ErrorCodeMap.CreateResponse(Request, 10004, "email is invalid");
             if (string.IsNullOrEmpty(dto.FirstName))
                 return ErrorCodeMap.CreateResponse(Request, 10004, "FirstName is required");

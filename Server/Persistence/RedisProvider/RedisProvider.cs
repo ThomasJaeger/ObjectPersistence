@@ -206,6 +206,40 @@ namespace RedisProvider
             _db.KeyDelete(keys);
         }
 
+        public override Account GetAccountByAccountNumber(string accountNumber)
+        {
+            List<Account> list = GetObjects<Account>();
+            var queryResult = from Account o in list
+                              where
+                                  (String.Equals(o.AccountNumber, accountNumber, StringComparison.CurrentCultureIgnoreCase)) &&
+                                  o.Active
+                              select o;
+            Account result = queryResult.FirstOrDefault();
+            return result;
+        }
+
+        public override Account GetAccountByAccountOwnerEmail(string email)
+        {
+            List<Account> list = GetObjects<Account>();
+            var queryResult = from Account o in list
+                where
+                    o.AccountOwner.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && o.Active
+                select o;
+            Account result = queryResult.FirstOrDefault();
+            return result;
+        }
+
+        public override User GetUserByEmail(string email)
+        {
+            List<User> list = GetObjects<User>();
+            var queryResult = from User o in list
+                              where
+                                  o.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && o.Active
+                              select o;
+            User result = queryResult.FirstOrDefault();
+            return result;
+        }
+
         public override T GetObjectByName<T>(string name)
         {
             List<T> list = GetObjects<T>();

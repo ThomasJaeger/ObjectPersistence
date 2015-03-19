@@ -26,10 +26,10 @@ namespace RESTService.Controllers
         public HttpResponseMessage Get(string id)
         {
             if (string.IsNullOrEmpty(id))
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "id is null");
+                return ErrorCodeMap.CreateResponse(Request, 10004, "id is null or empty");
             var obj = Persistence.Instance.Provider.GetObjectById<AddressType>(id);
             if (obj == null)
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "AddressType does not exist");
+                return ErrorCodeMap.CreateResponse(Request, 10100, "AddressType does not exist");
             var dto = Mapper.Map<AddressTypeDTO>(obj);
             return Request.CreateResponse(HttpStatusCode.OK, dto);
         }

@@ -6,6 +6,7 @@ using Db4objects.Db4o;
 using Db4objects.Db4o.Linq;
 using DomainModel;
 using PersistenceService;
+using User = DomainModel.User;
 
 namespace db4oProvider
 {
@@ -166,12 +167,42 @@ namespace db4oProvider
             }
         }
 
+        public override Account GetAccountByAccountNumber(string accountNumber)
+        {
+            Account result = null;
+            IDb4oLinqQuery<Account> queryResult = from Account o in ObjectContainer
+                where
+                    (String.Equals(o.AccountNumber, accountNumber, StringComparison.CurrentCultureIgnoreCase)) &&
+                    o.Active
+                select o;
+            result = queryResult.FirstOrDefault();
+            return result;
+        }
+
+        public override Account GetAccountByAccountOwnerEmail(string email)
+        {
+            IDb4oLinqQuery<Account> queryResult = from Account o in ObjectContainer
+                where
+                    o.AccountOwner.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && o.Active
+                select o;
+            return queryResult.FirstOrDefault();
+        }
+
+        public override User GetUserByEmail(string email)
+        {
+            IDb4oLinqQuery<User> queryResult = from User o in ObjectContainer
+                where
+                    o.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && o.Active
+                select o;
+            return queryResult.FirstOrDefault();
+        }
+
         public override T GetObjectByName<T>(string name)
         {
             IDb4oLinqQuery<T> queryResult = from T o in ObjectContainer
-                                            where (String.Equals(o.Name, name, StringComparison.CurrentCultureIgnoreCase)) &&
-                                                  o.Active
-                                            select o;
+                where (String.Equals(o.Name, name, StringComparison.CurrentCultureIgnoreCase)) &&
+                      o.Active
+                select o;
             return queryResult.FirstOrDefault();
         }
 

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using DomainModel;
 using DTO;
 using KellermanSoftware.CompareNetObjects;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using PersistenceService;
 using Services;

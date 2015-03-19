@@ -37,6 +37,12 @@ namespace RESTService
             // Mape the DisplayName property to the Name property
             Mapper.CreateMap<AddressType, AddressTypeDTO>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.DisplayName));
 
+            Mapper.CreateMap<Account, AccountDTO>();
+            Mapper.CreateMap<AccountDTO, Account>().ForMember(dest => dest.Id, opt => opt.Ignore());
+
+            Mapper.CreateMap<AccountOwner, AccountOwnerDTO>();
+            Mapper.CreateMap<AccountOwnerDTO, AccountOwner>().ForMember(dest => dest.Id, opt => opt.Ignore());
+
             // make sure configurations are correct
             //Mapper.AssertConfigurationIsValid();
         }

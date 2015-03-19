@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="ApplicationFacade.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressTypeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="ErrorCodeMap.cs" />
@@ -96,6 +97,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountDTO.cs" />
+    <Compile Include="Models\AccountOwnerDTO.cs" />
     <Compile Include="Models\AddressDTO.cs" />
     <Compile Include="Models\AddressTypeDTO.cs" />
     <Compile Include="Models\DTOBase.cs" />
@@ -122,6 +125,10 @@
     <ProjectReference Include="..\..\Persistence\PersistenceService\PersistenceService.csproj">
       <Project>{11579fe1-fd3b-4eeb-8b97-230ab5de5815}</Project>
       <Name>PersistenceService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Utility\UtilityFunctions.csproj">
+      <Project>{36ee3794-1a66-43cf-af25-a741689159b4}</Project>
+      <Name>UtilityFunctions</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
