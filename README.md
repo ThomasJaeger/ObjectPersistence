@@ -1,5 +1,27 @@
-ObjectPersistence
-=================
+ObjectPersistence (update 2015-03-23)
+=====================================
+
+This is a complete .NET C# reference implementation to help you jump start an service oriented system running in a cloud
+environment such as Amazon's EC2 or on-premis clusters. 
+
+This reference implementation shows you how to build a client and the server side. The client side is a sample WPF
+application that communicates via http REST requests using JSON payloads to the service side. 
+
+The service side is using a Wep API 2 service layer that communicates to a central domain model. The service side
+demonstrates how to handle exceptions and edge cases and how to communicate failure to the client.
+
+The persistence layer demonstrates the extreamly powerful provider pattern to store the domain objects into the
+following databases:
+
+1. db4o (an object database)
+2. Redis (a NoSQL database)
+3. SimpleDB (a NoSQL database)
+4. SQL Server (comming soon)
+
+Please note that the entire system has no knowledge on how the objects are stored. All implementation details
+are in the individual providers listed above. This means that you can switch the persistence provider without
+having to recompile and therefore switch a running system from one persistence store to another.
+
 
 Watch the video walkthrough on my YouTube channel at http://youtu.be/DxSGSZ3k89s
 
