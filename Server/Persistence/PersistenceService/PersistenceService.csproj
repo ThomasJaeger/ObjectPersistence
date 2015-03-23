@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IdentityMap.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="PersistenceProvider.cs" />
     <Compile Include="PersistenceProviderConfigurationSection.cs" />

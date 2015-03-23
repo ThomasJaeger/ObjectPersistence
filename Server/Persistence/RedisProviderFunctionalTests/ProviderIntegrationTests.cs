@@ -8,10 +8,10 @@ using NUnit.Framework;
 using PersistenceService;
 using Services;
 
-namespace RedisProviderIntegrationTests
+namespace ProviderIntegrationTests
 {
     [TestFixture]
-    public class RedisProviderIntegrationTests
+    public class ProviderIntegrationTests
     {
         private CompareLogic _compareLogic;
 

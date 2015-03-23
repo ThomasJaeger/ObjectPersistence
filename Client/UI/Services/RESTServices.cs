@@ -140,8 +140,9 @@ namespace Services
                 // Use Formatting.Indented for pretty JSON format
                 string json = JsonConvert.SerializeObject(requestObject, new JsonSerializerSettings
                 {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize  // is useful if objects are nested but not indefinitely
+                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize,  // is useful if objects are nested but not indefinitely
                     //ReferenceLoopHandling = ReferenceLoopHandling.Ignore     // will not serialize an object if it is a child object of itself
+                    TypeNameHandling = TypeNameHandling.All
                 });
 
                 using (HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json"))

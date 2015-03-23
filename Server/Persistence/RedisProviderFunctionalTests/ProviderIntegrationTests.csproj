@@ -7,8 +7,8 @@
     <ProjectGuid>{AC9A9DF9-7D09-47E7-BAF3-EDD009AE5374}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RedisProviderIntegrationTests</RootNamespace>
-    <AssemblyName>RedisProviderIntegrationTests</AssemblyName>
+    <RootNamespace>ProviderIntegrationTests</RootNamespace>
+    <AssemblyName>ProviderIntegrationTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -55,11 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RedisProviderIntegrationTests.cs" />
+    <Compile Include="ProviderIntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +81,10 @@
       <Project>{bca4eeb5-3af9-45a6-983e-b7068976b418}</Project>
       <Name>RESTService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\db4oProvider\db4oProvider.csproj">
+      <Project>{a332a25b-5bde-4cb4-b25f-eed03d4ad04f}</Project>
+      <Name>db4oProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PersistenceService\PersistenceService.csproj">
       <Project>{11579fe1-fd3b-4eeb-8b97-230ab5de5815}</Project>
       <Name>PersistenceService</Name>
@@ -86,6 +92,10 @@
     <ProjectReference Include="..\RedisProvider\RedisProvider.csproj">
       <Project>{7473e467-ea2c-448b-a0c5-f18875abf02f}</Project>
       <Name>RedisProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimpleDBProvider\SimpleDBProvider.csproj">
+      <Project>{6ff52df2-4b4c-435b-978b-741ef1c5ab7a}</Project>
+      <Name>SimpleDBProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

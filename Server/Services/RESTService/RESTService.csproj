@@ -122,9 +122,21 @@
       <Project>{0b666519-ead6-4118-90ef-a3bbb6b9edcb}</Project>
       <Name>DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Persistence\db4oProvider\db4oProvider.csproj">
+      <Project>{a332a25b-5bde-4cb4-b25f-eed03d4ad04f}</Project>
+      <Name>db4oProvider</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Persistence\PersistenceService\PersistenceService.csproj">
       <Project>{11579fe1-fd3b-4eeb-8b97-230ab5de5815}</Project>
       <Name>PersistenceService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Persistence\RedisProvider\RedisProvider.csproj">
+      <Project>{7473e467-ea2c-448b-a0c5-f18875abf02f}</Project>
+      <Name>RedisProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Persistence\SimpleDBProvider\SimpleDBProvider.csproj">
+      <Project>{6ff52df2-4b4c-435b-978b-741ef1c5ab7a}</Project>
+      <Name>SimpleDBProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Utility\UtilityFunctions.csproj">
       <Project>{36ee3794-1a66-43cf-af25-a741689159b4}</Project>

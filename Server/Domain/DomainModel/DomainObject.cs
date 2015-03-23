@@ -8,7 +8,18 @@ namespace DomainModel
         private DateTime _created = DateTime.Now;
         private string _id = Guid.NewGuid().ToString("D").ToUpper();
         private string _name = "";
-        public const string Version = "20141227";
+        public const string CURRENT_DOMAIN_VERSION = "20150322";
+        private string _version = CURRENT_DOMAIN_VERSION;
+
+        /// <summary>
+        /// The stored version at that time. Compare with
+        /// DomainObject.CURRENT_DOMAIN_VERSION
+        /// </summary>
+        public string Version
+        {
+            get { return _version; }
+            set { _version = value; }
+        }
 
         public DomainObject()
         {

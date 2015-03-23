@@ -7,7 +7,7 @@ namespace DomainModel
         private List<ApplicationPermission> _applicationPermissions = new List<ApplicationPermission>();
 
         /// <summary>
-        /// The actualt permissions on what a user is allowed to do within he system.
+        /// The actual permissions on what a user is allowed to do within he system.
         /// For example, Access Ledger, Print Ledger, etc. these are defined
         /// within the domain and business rules. You probably want the business
         /// users or customers be able to maintain these permissions so that
