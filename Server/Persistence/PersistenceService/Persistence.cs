@@ -48,7 +48,15 @@ namespace PersistenceService
                         "Persistence is not configured to be used with this application.");
                 _providers = new ProviderCollection();
 
-                ProvidersHelper.InstantiateProviders(Config.Providers, _providers, typeof(PersistenceProvider));
+                ProviderSettingsCollection onlyOneProvider = new ProviderSettingsCollection();
+                onlyOneProvider.Add(Config.Providers[Config.DefaultProvider]);
+
+                // Only instantiate the default provider
+                ProvidersHelper.InstantiateProviders(onlyOneProvider, _providers, typeof(PersistenceProvider));
+
+                // The following would instantiate all providers listed
+                //ProvidersHelper.InstantiateProviders(Config.Providers, _providers, typeof(PersistenceProvider));
+
                 _provider = _providers[Config.DefaultProvider] as PersistenceProvider;
                 _isInitialized = true;
             }
