@@ -1,0 +1,26 @@
+﻿<Window x:Class="Wpf.frmAddress"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Address" Height="346" Width="319" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Activated="Window_Activated">
+    <Grid>
+        <Label Content="Line 1:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top"/>
+        <Label Content="Line 2:" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtLine1" TabIndex="0" HorizontalAlignment="Left" Height="23" Margin="100,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="txtLine2" TabIndex="1" HorizontalAlignment="Left" Height="23" Margin="100,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="txtLine3" TabIndex="2" HorizontalAlignment="Left" Height="23" Margin="100,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Label Content="Line 3:" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
+        <Label Content="Type:" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cmbAddressType" HorizontalAlignment="Left" Margin="100,17,0,0" VerticalAlignment="Top" Width="188"/>
+        <TextBox x:Name="txtCity" TabIndex="2" HorizontalAlignment="Left" Height="23" Margin="100,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Label Content="City:" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtState" TabIndex="2" HorizontalAlignment="Left" Height="23" Margin="100,166,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Label Content="State:" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtZip" TabIndex="2" HorizontalAlignment="Left" Height="23" Margin="100,197,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Label Content="Zip:" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCountry" TabIndex="2" HorizontalAlignment="Left" Height="23" Margin="100,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188"/>
+        <Label Content="Country:" HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="213,270,0,0" VerticalAlignment="Top" Width="75" Click="btnSave_Click" IsDefault="True"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="120,270,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="btnCancel_Click"/>
+
+    </Grid>
+</Window>
