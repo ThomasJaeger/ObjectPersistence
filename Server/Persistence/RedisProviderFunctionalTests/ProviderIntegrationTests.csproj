@@ -97,6 +97,10 @@
       <Project>{6ff52df2-4b4c-435b-978b-741ef1c5ab7a}</Project>
       <Name>SimpleDBProvider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SQLServerProvider\SQLServerProvider.csproj">
+      <Project>{52c943b6-f0cd-4fcb-9ebe-1563af868335}</Project>
+      <Name>SQLServerProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

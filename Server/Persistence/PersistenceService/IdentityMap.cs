@@ -37,13 +37,13 @@ namespace PersistenceService
 
         public static DomainObject Get(DomainObject obj)
         {
-            string id = CreateKey(obj);
+            string id = CreateKey<DomainObject>(obj);
             return _identityMap[id];
         }
 
         public static void Remove(DomainObject obj)
         {
-            string id = CreateKey(obj);
+            string id = CreateKey<DomainObject>(obj);
             _identityMap.Remove(id);
         }
 
@@ -54,26 +54,29 @@ namespace PersistenceService
 
         public static bool ContainsId(DomainObject obj)
         {
-            string id = CreateKey(obj);
+            string id = CreateKey<DomainObject>(obj);
             return _identityMap.ContainsKey(id);
         }
 
         public static void Update(DomainObject obj)
         {
             if (obj == null) return;
-            string id = CreateKey(obj);
+            string id = CreateKey<DomainObject>(obj);
             if (_identityMap.ContainsKey(id))
                 _identityMap[id] = obj;
             else
                 _identityMap.Add(id, obj);
         }
 
+        /// <summary>
+        /// Deletes all objects from the identity map
+        /// </summary>
         public static void Clear()
         {
             _identityMap.Clear();
         }
 
-        public static string CreateKey<T>(T obj = null) where T : DomainObject
+        public static string CreateKey<T>(DomainObject obj = null)
         {
             string key = typeof(T).FullName.Replace(".", "_") + "_" + DomainObject.CURRENT_DOMAIN_VERSION;
             if (obj != null)
@@ -81,11 +84,16 @@ namespace PersistenceService
             return key;
         }
 
-        public static string CreateKey<T>(string id) where T : DomainObject
+        public static string CreateKey<T>(string id)
         {
             string key = typeof(T).FullName.Replace(".", "_") + "_" + DomainObject.CURRENT_DOMAIN_VERSION;
             key = key + "_" + id;
             return key;
+        }
+
+        public static Dictionary<string, DomainObject>.ValueCollection Values()
+        {
+            return _identityMap.Values;
         }
     }
 }

@@ -79,6 +79,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SQLServerProvider.mdf" />
+    <Content Include="App_Data\SQLServerProvider_log.ldf">
+      <DependentUpon>SQLServerProvider.mdf</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -137,6 +141,10 @@
     <ProjectReference Include="..\..\Persistence\SimpleDBProvider\SimpleDBProvider.csproj">
       <Project>{6ff52df2-4b4c-435b-978b-741ef1c5ab7a}</Project>
       <Name>SimpleDBProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Persistence\SQLServerProvider\SQLServerProvider.csproj">
+      <Project>{52c943b6-f0cd-4fcb-9ebe-1563af868335}</Project>
+      <Name>SQLServerProvider</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Utility\UtilityFunctions.csproj">
       <Project>{36ee3794-1a66-43cf-af25-a741689159b4}</Project>

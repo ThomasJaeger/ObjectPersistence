@@ -49,6 +49,7 @@ namespace ProviderIntegrationTests
             compareLogic.Config.MaxDifferences = int.MaxValue;
             compareLogic.Config.ShowBreadcrumb = true;
             compareLogic.Config.TreatStringEmptyAndNullTheSame = false;
+            compareLogic.Config.ClassTypesToIgnore.Add(typeof(DateTime));
             return compareLogic;
         }
 

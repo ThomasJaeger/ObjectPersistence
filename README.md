@@ -1,4 +1,4 @@
-ObjectPersistence (update 2015-03-23)
+ObjectPersistence (update 2015-04-04)
 =====================================
 
 This is a complete .NET C# reference implementation to help you jump start a service oriented system running in a cloud
@@ -16,7 +16,7 @@ following databases:
 1. db4o (an object database)
 2. Redis (a NoSQL database)
 3. SimpleDB (a NoSQL database)
-4. SQL Server (comming soon)
+4. SQL Server (a SQL Server database (localdb))
 
 Please note that the entire system has no knowledge on how the objects are stored. All implementation details
 are in the individual providers listed above. This means that you can switch the persistence provider without
