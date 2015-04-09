@@ -21,6 +21,7 @@ following databases:
 3. SimpleDB (a NoSQL database)
 4. SQL Server (a SQL Server database (localdb))
    (Note that you will need Sql Server Express LocalDB installed)
+   (Set the SQL_CONNECTION_STRING in AbstractMapper to the correct location of the DB file)
 
 Please note that the entire system has no knowledge on how the objects are stored. All implementation details
 are in the individual providers listed above. This means that you can switch the persistence provider without
