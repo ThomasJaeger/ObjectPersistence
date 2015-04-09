@@ -64,7 +64,7 @@ namespace SQLServerProvider.DataMappers
                 sb.Append(SQL_UPDATE);
                 sb.Append(" Value = ");
                 sb.Append(obj.Value);
-                sb.Append(", '");
+                sb.Append(", ");
                 sb.Append(" DisplayName = '");
                 sb.Append(obj.DisplayName);
                 sb.Append("'");

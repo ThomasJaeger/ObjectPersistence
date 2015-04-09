@@ -1,5 +1,8 @@
-ObjectPersistence (update 2015-04-04)
-=====================================
+(update 2015-04-09)
+- Fixed SQL Server Provider AddressMapper
+
+ObjectPersistence
+=================
 
 This is a complete .NET C# reference implementation to help you jump start a service oriented system running in a cloud
 environment such as Amazon's EC2 or on-premis clusters. 
@@ -17,12 +20,24 @@ following databases:
 2. Redis (a NoSQL database)
 3. SimpleDB (a NoSQL database)
 4. SQL Server (a SQL Server database (localdb))
+   (Note that you will need Sql Server Express LocalDB installed)
 
 Please note that the entire system has no knowledge on how the objects are stored. All implementation details
 are in the individual providers listed above. This means that you can switch the persistence provider without
 having to recompile and therefore switch a running system from one persistence store to another.
 
 
+Running the Application
+=======================
+To run the application follow these steps:
+1. Right click on the solution and select "Set StartUp Projects..."
+2. Select "Multiple StartUp Projects"
+3. Set actions to "Start" for projects RESTService and Wpf
+4. Run
+
+
+Details
+=======
 Watch the video walkthrough on my YouTube channel at http://youtu.be/DxSGSZ3k89s
 
 It has been several years (six years to be precise) since I published my article 

@@ -10,7 +10,7 @@ namespace SQLServerProvider.DataMappers
 {
     public class AddressMapper : AbstractMapper<Address>
     {
-        private const string SQL_TABLE_NAME = "Person";
+        private const string SQL_TABLE_NAME = "Addresses";
         private const string SQL_COLUMNS = "ID, City, Country, Line1, Line2, Line3, State, Zip, AddressTypeId";
         private const string SQL_SELECT = "SELECT " + SQL_COLUMNS + " FROM ";
         private const string SQL_INSERT = "INSERT INTO " + SQL_TABLE_NAME + " (" + SQL_COLUMNS + ") VALUES ('";
@@ -73,29 +73,28 @@ namespace SQLServerProvider.DataMappers
 
             if (doUpdate)
             {
-                // "ID, City, Country, Line1, Line2, Line3, State, Zip, AddressTypeId"
                 sb.Append(SQL_UPDATE);
                 sb.Append(" City = '");
                 sb.Append(obj.City);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" Country = '");
                 sb.Append(obj.Country);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" Line1 = '");
                 sb.Append(obj.Line1);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" Line2 = '");
                 sb.Append(obj.Line2);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" Line3 = '");
                 sb.Append(obj.Line3);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" State = '");
                 sb.Append(obj.State);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" Zip = '");
                 sb.Append(obj.Zip);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" AddressTypeId = '");
                 sb.Append(obj.AddressType.Id);
                 sb.Append("'");
@@ -164,7 +163,9 @@ namespace SQLServerProvider.DataMappers
 
         public override Address GetByID(string id)
         {
-            return AbstractFind(id, SQL_SELECT + SQL_TABLE_NAME + " WHERE ID = '" + id + "'");
+            Address result = AbstractFind(id, SQL_SELECT + SQL_TABLE_NAME + " WHERE ID = '" + id + "'") ??
+                             Address.NewInstance();
+            return result;
         }
 
         protected override string SelectAllSql

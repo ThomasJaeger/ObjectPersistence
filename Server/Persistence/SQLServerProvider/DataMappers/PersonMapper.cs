@@ -31,6 +31,8 @@ namespace SQLServerProvider.DataMappers
         {
             DomainObject domainObject = DomainObjectMapper.Instance.GetByID(dataRow[0].ToString());
             Person result = GetPropertiesFromParentObject(domainObject);
+            result.HomeAddress = Address.NewInstance();
+            result.WorkAddress = Address.NewInstance();
 
             if (dataRow[1] != DBNull.Value)
                 result.HomeAddress = AddressMapper.Instance.GetByID(dataRow[1].ToString());
@@ -71,16 +73,16 @@ namespace SQLServerProvider.DataMappers
                 sb.Append(SQL_UPDATE);
                 sb.Append(" HomeAddressId = '");
                 sb.Append(obj.HomeAddress.Id);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" WorkAddressId = '");
                 sb.Append(obj.WorkAddress.Id);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" FirstName = '");
                 sb.Append(obj.FirstName);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" LastName = '");
                 sb.Append(obj.LastName);
-                sb.Append("', '");
+                sb.Append("', ");
                 sb.Append(" Email = '");
                 sb.Append(obj.Email);
                 sb.Append("'");
