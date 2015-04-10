@@ -1,10 +1,11 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Services
 {
     public class ErrorInfo
     {
-        private Collection<ErrorData> _errorDatas = new Collection<ErrorData>();
+        private List<ErrorData> _errorDatas = new List<ErrorData>();
         private ErrorSeverityType _errorSeverityType = ErrorSeverityType.Error;
         private ErrorCodeType _errorCodeType = ErrorCodeType.Unclassified;
         private int _code = 0;
@@ -41,7 +42,7 @@ namespace Services
             set { _errorCodeType = value; }
         }
 
-        public Collection<ErrorData> ErrorDatas
+        public List<ErrorData> ErrorDatas
         {
             get { return _errorDatas; }
             set { _errorDatas = value; }

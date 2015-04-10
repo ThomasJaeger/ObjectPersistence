@@ -5,6 +5,7 @@ using System.Web.Http;
 using AutoMapper;
 using DomainModel;
 using PersistenceService;
+using RESTService.ActionFilters;
 using RESTService.Models;
 
 namespace RESTService.Controllers
@@ -36,12 +37,9 @@ namespace RESTService.Controllers
 
         [HttpPost]
         [Route("")]
+        [ValidationResponseFilter]
         public HttpResponseMessage Post(AddressTypeDTO dto)
         {
-            if (dto == null)
-                return ErrorCodeMap.CreateResponse(Request, 10003, "AddressType is null");
-            if (string.IsNullOrEmpty(dto.Name))
-                return ErrorCodeMap.CreateResponse(Request, 10004, "Name is null or empty");
             AddressType obj = Persistence.Instance.Provider.GetObjectByName<AddressType>(dto.Name);
             if (obj != null)
                 return ErrorCodeMap.CreateResponse(Request, 10101, dto.Name + " already exists");
@@ -53,12 +51,11 @@ namespace RESTService.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [ValidationResponseFilter]
         public HttpResponseMessage Put(string id, AddressTypeDTO dto)
         {
             if (string.IsNullOrEmpty(id))
                 return ErrorCodeMap.CreateResponse(Request, 10004, "id is null or empty");
-            if (dto == null)
-                return ErrorCodeMap.CreateResponse(Request, 10003, "AddressType is null");
             var obj = Persistence.Instance.Provider.GetObjectById<AddressType>(id);
             if (obj == null)
                 return ErrorCodeMap.CreateResponse(Request, 10100,

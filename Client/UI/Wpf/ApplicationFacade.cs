@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows;
 using DTO;
 using Services;
@@ -27,11 +28,11 @@ namespace Wpf
         {
             // Do any client side logging and/or validations here
 
-            if (string.IsNullOrEmpty(dto.FirstName) || string.IsNullOrEmpty(dto.LastName) || string.IsNullOrEmpty(dto.Email))
-            {
-                MessageBox.Show("First name, last name, and email can not be empty.");
-                return false;
-            }
+//            if (string.IsNullOrEmpty(dto.FirstName) || string.IsNullOrEmpty(dto.LastName) || string.IsNullOrEmpty(dto.Email))
+//            {
+//                MessageBox.Show("First name, last name, and email can not be empty.");
+//                return false;
+//            }
 
             RESTServices.CreatePerson(dto);
 
@@ -47,10 +48,13 @@ namespace Wpf
 
         private static void HandleExceptions()
         {
+            string validations = string.Join(Environment.NewLine, (object[])RESTServices.ErrorInfo.ErrorDatas.ToArray());
+
             MessageBox.Show("Error code: " + RESTServices.ErrorInfo.Code + Environment.NewLine +
                 "Error severity type: " + RESTServices.ErrorInfo.ErrorSeverityType + Environment.NewLine +
                 "Error message: " + RESTServices.ErrorInfo.Message + Environment.NewLine +
-                "Error description: " + RESTServices.ErrorInfo.Description);
+                "Error description: " + RESTServices.ErrorInfo.Description + Environment.NewLine +
+                "Validation errors: " + Environment.NewLine + validations);
         }
 
         public static bool SavePerson(PersonDTO dto)

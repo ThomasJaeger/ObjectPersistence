@@ -235,15 +235,17 @@ namespace Services
                 if (ErrorCodeMap.Map.ContainsKey(errorResponse.Code))
                 {
                     _errorInfo.Code = errorResponse.Code;
+                    if (!string.IsNullOrEmpty(errorResponse.Message))
+                        _errorInfo.Message = errorResponse.Message;
                     _errorInfo.Description = errorResponse.Description;
                     _errorInfo.ErrorCodeType = ErrorCodeMap.Map[errorResponse.Code];
                     _errorInfo.ErrorSeverityType = ErrorSeverityType.Error;
-                    if (!string.IsNullOrEmpty(errorResponse.Message))
+
+                    foreach (var validation in errorResponse.Validations)
                     {
-                        _errorInfo.Message = errorResponse.Message;
                         ErrorData errorData = new ErrorData();
                         errorData.Id = errorResponse.Code.ToString();
-                        errorData.Message = errorResponse.Message;
+                        errorData.Message = validation;
                         _errorInfo.ErrorDatas.Add(errorData);
                     }
                 }

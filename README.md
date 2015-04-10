@@ -1,3 +1,8 @@
+(update 2015-04-10)
+- Added FluentValidation for DTO objects with appropriate validator objects
+- Updated ErrorMap to include new fluent model validations
+- Updated client side to include reponse from server model validations
+
 (update 2015-04-09)
 - Fixed SQL Server Provider AddressMapper
 

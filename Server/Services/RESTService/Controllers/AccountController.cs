@@ -5,6 +5,7 @@ using System.Web.Http;
 using AutoMapper;
 using DomainModel;
 using PersistenceService;
+using RESTService.ActionFilters;
 using RESTService.Models;
 
 namespace RESTService.Controllers
@@ -49,10 +50,9 @@ namespace RESTService.Controllers
 
         [HttpPost]
         [Route("")]
+        [ValidationResponseFilter]
         public HttpResponseMessage Post(AccountDTO dto)
         {
-            HttpResponseMessage failedValidation = ValidateDto(dto);
-            if (failedValidation != null) return failedValidation;
             Account obj = Persistence.Instance.Provider.GetAccountByAccountNumber(dto.AccountNumber);
             if (obj != null)
                 return ErrorCodeMap.CreateResponse(Request, 10101, dto.AccountNumber + " already exists");
@@ -64,12 +64,11 @@ namespace RESTService.Controllers
 
         [HttpPut]
         [Route("{id}")]
+        [ValidationResponseFilter]
         public HttpResponseMessage Put(string id, AccountDTO dto)
         {
             if (string.IsNullOrEmpty(id))
                 return ErrorCodeMap.CreateResponse(Request, 10004, "id is null or empty");
-            HttpResponseMessage failedValidation = ValidateDto(dto);
-            if (failedValidation != null) return failedValidation;
             var obj = Persistence.Instance.Provider.GetObjectById<Account>(id);
             if (obj == null)
                 return ErrorCodeMap.CreateResponse(Request, 10100,
@@ -89,21 +88,6 @@ namespace RESTService.Controllers
                 return ErrorCodeMap.CreateResponse(Request, 10100, "Can not find account with id " + id);
             ApplicationFacade.DeleteAccount(obj);
             return Request.CreateResponse(HttpStatusCode.OK, id);
-        }
-
-        private HttpResponseMessage ValidateDto(AccountDTO dto)
-        {
-            if (dto == null)
-                return ErrorCodeMap.CreateResponse(Request, 10003, "Account is null");
-            if (string.IsNullOrEmpty(dto.AccountNumber))
-                return ErrorCodeMap.CreateResponse(Request, 10004, "AccountNumber is null or empty");
-            if (dto.AccountOwner == null)
-                return ErrorCodeMap.CreateResponse(Request, 10004, "AccountOwner is required");
-            if (string.IsNullOrEmpty(dto.AccountOwner.Email))
-                return ErrorCodeMap.CreateResponse(Request, 10004, "AccountOwner.Email is null or empty");
-            if (string.IsNullOrEmpty(dto.AccountOwner.Password))
-                return ErrorCodeMap.CreateResponse(Request, 10004, "AccountOwner.Password is null or empty");
-            return null;
         }
     }
 }
