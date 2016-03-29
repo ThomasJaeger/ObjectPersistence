@@ -1,3 +1,6 @@
+(update 2016-03-29)
+- Added missing files to github such as FluentValidationExtension.cs, ValidationResponseFilter.cs, etc.
+
 (update 2015-04-10)
 - Added FluentValidation for DTO objects with appropriate validator objects
 - Updated ErrorMap to include new fluent model validations
